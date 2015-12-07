@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 
 public class MyComparator  {
 	
-	static <K,V extends Comparable<? super V>> 
+	public static <K,V extends Comparable<? super V>> 
     List<Entry<K, V>> entriesSortedByValues(Map<K,V> map) {
 
 List<Entry<K,V>> sortedEntries = new ArrayList<Entry<K,V>>(map.entrySet());
@@ -26,7 +26,7 @@ Collections.sort(sortedEntries,
         }
     }
 );
-
+System.out.println(sortedEntries);
 return sortedEntries;
 }
 }
