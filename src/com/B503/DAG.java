@@ -1,10 +1,14 @@
 package com.B503;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Stack;
 
 public class DAG 
 
@@ -12,6 +16,7 @@ public class DAG
 	Map<Integer, Set<Integer>> parent=new HashMap <Integer, Set<Integer>> ();
 	Map<Integer, Set<Integer>> children=new HashMap <Integer, Set<Integer>> ();
 	static Map<Integer,Integer>   dependents =new HashMap<Integer, Integer>(); 
+	ArrayList<Set> subGraphs=new ArrayList<Set>();
 
 	void addParent(Integer node, Integer par)
 	{
@@ -77,6 +82,34 @@ public class DAG
 			children.put(node,null);
 
 	}
+	
+	
+	void generateSubGraphs(List<Entry<Integer, Integer>> sortedDependents)
+	{
+		for(int ind=0;ind<sortedDependents.size();ind++)
+		{
+			Entry node=sortedDependents.get(ind);
+			System.out.println("Entry"+node);
+			Set<Integer>subset=new HashSet<Integer>();
+			Stack<Integer> subgraph=new Stack<Integer>();
+			subgraph.push((Integer)node.getKey());
+			while(!subgraph.isEmpty())
+			{
+				Integer ele=subgraph.pop();
+				subset.add(ele);
+				Set<Integer>par=parent.get(ele);
+				System.out.println();
+				while(par.iterator().hasNext())
+				{
+					subgraph.push(par.iterator().next());
+					
+				}
+				
+			}
+			System.out.println(subgraph.peek());
+			
+		}
+	}
 
 	public static void main(String args[])
 	{
@@ -137,7 +170,8 @@ public class DAG
 		sortedDependents=comparator.entriesSortedByValues(dependents);
 		System.out.println("dependents after sorting"+dependents);
 		System.out.println("sorted dependents"+sortedDependents);
+		graph.generateSubGraphs(sortedDependents);
 	}
 
+	
 }
-;
