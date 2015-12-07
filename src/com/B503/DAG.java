@@ -76,6 +76,7 @@ public class DAG
 
 	void init(Integer node)
 	{
+		
 		if(!parent.containsKey(node))
 			parent.put(node,null);
 		if(!children.containsKey(node))
@@ -86,38 +87,53 @@ public class DAG
 	
 	void generateSubGraphs(List<Entry<Integer, Integer>> sortedDependents)
 	{
+		
+		Iterator parit=null;
 		for(int ind=0;ind<sortedDependents.size();ind++)
 		{
+
 			Entry node=sortedDependents.get(ind);
-			System.out.println("Entry"+node);
+			//System.out.println("Entry"+node);
 			Set<Integer>subset=new HashSet<Integer>();
 			Stack<Integer> subgraph=new Stack<Integer>();
 			subgraph.push((Integer)node.getKey());
+			//System.out.println(subgraph.peek());
 			while(!subgraph.isEmpty())
 			{
 				Integer ele=subgraph.pop();
 				subset.add(ele);
 				Set<Integer>par=parent.get(ele);
-				System.out.println();
-				while(par.iterator().hasNext())
+				//System.out.println("par"+par);
+				if(par!=null)
+					parit=par.iterator();
+				while(par !=null && parit.hasNext())
 				{
-					subgraph.push(par.iterator().next());
-					
-				}
-				
+					Integer it=(Integer) parit.next();
+					//if(it!=null && it.intValue()>0){
+					//System.out.println("it"+it);
+					subgraph.push(it);}
+				//if(!subgraph.isEmpty())
+				//System.out.println(subset);
+
 			}
-			System.out.println(subgraph.peek());
+
+			System.out.println(subset);
+			subGraphs.add(subset);
+		}
+
+			
 			
 		}
-	}
+		
+	
 
 	public static void main(String args[])
 	{
 		DAG graph=new DAG();
 		//01
 		graph.init(Integer.valueOf(1));
-		graph.addParent(Integer.valueOf(1),null);
-		graph.addChildren(null,1);
+		graph.addParent(Integer.valueOf(1),Integer.valueOf(-1));
+		graph.addChildren(Integer.valueOf(-1),1);
 		//12
 		graph.init(Integer.valueOf(1));
 		graph.init(Integer.valueOf(2));
