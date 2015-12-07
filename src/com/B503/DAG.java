@@ -126,7 +126,17 @@ public class DAG
 		}
 		
 	
-
+	public void setUnion(){
+		
+		System.out.println(subGraphs);	
+		Set set1 = subGraphs.get(0);
+		System.out.println(set1);
+		Set set2 = subGraphs.get(1);
+		System.out.println(set2);
+		set1.addAll(set2);
+		System.out.println(set1);
+		
+	}
 	public static void main(String args[])
 	{
 		DAG graph=new DAG();
@@ -187,6 +197,7 @@ public class DAG
 		System.out.println("dependents after sorting"+dependents);
 		System.out.println("sorted dependents"+sortedDependents);
 		graph.generateSubGraphs(sortedDependents);
+		graph.setUnion();
 	}
 
 	
