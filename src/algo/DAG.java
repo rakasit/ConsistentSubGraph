@@ -27,7 +27,7 @@ public class DAG {
 
 	public String toString () {
 		StringBuffer s = new StringBuffer();
-		for (Integer v: nodes.keySet()) s.append("\n    " + v + " -> " + nodes.get(v));
+		for (Integer v: nodes.keySet()) s.append("\n   " + v + " -> " + nodes.get(v));
 		return s.toString();                
 	}
 
@@ -55,6 +55,35 @@ public class DAG {
 		nodes.get(from).remove(to);
 	}
 
+	
+	public static void dependCount()
+	{
+		//System.out.println(" keysets"+ n.keySet());
+		System.out.println(n);
+		for(Map<Integer,Set<Integer>>m:n.keySet())
+		{
+			System.out.println("m"+m);
+			Set<Integer> set=new HashSet<Integer>();
+			 set=m.keySet();
+			
+			System.out.println("set"+set);
+			for(Integer i:set)
+			{
+				//Map<Integer,Set<Integer>>local=new HashMap<Integer,Set<Integer>>();
+				//System.out.println("m.get(i)"+m.get(0));
+				//local.put(i,m.get(i));
+				System.out.println("local");
+				System.out.println("n.get(m)"+ n.get(m));
+				if(n.get(m)!=null)
+				depend.put(i,n.get(m).size());
+				System.out.println("depend"+depend);
+			}
+			
+		}
+		
+		//System.out.println(depend);
+	}
+	
 
 	public static void main (String[] args) throws IOException {
 
@@ -71,6 +100,8 @@ public class DAG {
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		graph.add(0,1);
+		
+		
 		System.out.println("keys"+n.keySet());
 
 		if(n.keySet().isEmpty())
@@ -765,6 +796,8 @@ public class DAG {
 			
 		
 		}
+		System.out.println(n);
+		dependCount();
 
 		System.out.println("The current graph: " + graph);
 		// pr.println(graph);
