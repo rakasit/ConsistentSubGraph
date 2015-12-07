@@ -44,12 +44,15 @@ public class DAG
 
 	void addDependentCount()
 	{
-		
+
 		for(Integer i: children.keySet())
 		{
-			dependents.put(i, children.get(i).size());
+			if(children.get(i)!=null)
+				dependents.put(i, children.get(i).size());
+			else
+				dependents.put(i, Integer.valueOf(0));	
 		}
-		
+
 	}
 
 	void PrintDependentCount()
@@ -65,37 +68,63 @@ public class DAG
 		}
 	}
 
+	void init(Integer node)
+	{
+		if(!parent.containsKey(node))
+			parent.put(node,null);
+		if(!children.containsKey(node))
+			children.put(node,null);
+
+	}
+
 	public static void main(String args[])
 	{
 		DAG graph=new DAG();
 		//01
+		graph.init(Integer.valueOf(1));
 		graph.addParent(Integer.valueOf(1),null);
 		graph.addChildren(null,1);
 		//12
+		graph.init(Integer.valueOf(1));
+		graph.init(Integer.valueOf(2));
 		graph.addParent(Integer.valueOf(2),Integer.valueOf(1));
 		graph.addChildren(Integer.valueOf(1), Integer.valueOf(2));
 		//13
+		graph.init(Integer.valueOf(1));
+		graph.init(Integer.valueOf(3));
 		graph.addParent(Integer.valueOf(3),Integer.valueOf(1));
 		graph.addChildren(Integer.valueOf(1), Integer.valueOf(3));
 		//1,14
+		graph.init(Integer.valueOf(1));
+		graph.init(Integer.valueOf(14));
 		graph.addParent(Integer.valueOf(14),Integer.valueOf(1));
 		graph.addChildren(Integer.valueOf(1), Integer.valueOf(14));
 		//
 		graph.addParent(Integer.valueOf(14),Integer.valueOf(1));
 		graph.addChildren(Integer.valueOf(1), Integer.valueOf(14));
 		//2,4
+		graph.init(Integer.valueOf(2));
+		graph.init(Integer.valueOf(4));
 		graph.addParent(Integer.valueOf(4),Integer.valueOf(2));
 		graph.addChildren(Integer.valueOf(2), Integer.valueOf(4));
 		//2,5
+		graph.init(Integer.valueOf(2));
+		graph.init(Integer.valueOf(5));
 		graph.addParent(Integer.valueOf(5),Integer.valueOf(2));
 		graph.addChildren(Integer.valueOf(2), Integer.valueOf(5));
 		//4,6
+		graph.init(Integer.valueOf(4));
+		graph.init(Integer.valueOf(6));
 		graph.addParent(Integer.valueOf(6),Integer.valueOf(4));
 		graph.addChildren(Integer.valueOf(4), Integer.valueOf(6));
 		//5,6
+		graph.init(Integer.valueOf(5));
+		graph.init(Integer.valueOf(6));
 		graph.addParent(Integer.valueOf(6),Integer.valueOf(5));
 		graph.addChildren(Integer.valueOf(5), Integer.valueOf(6));
 		//3,8
+		graph.init(Integer.valueOf(3));
+		graph.init(Integer.valueOf(8));
 		graph.addParent(Integer.valueOf(8),Integer.valueOf(3));
 		graph.addChildren(Integer.valueOf(3), Integer.valueOf(8));
 
