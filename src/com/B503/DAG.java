@@ -2,6 +2,7 @@ package com.B503;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -132,7 +133,10 @@ public class DAG
 		graph.addDependentCount();
 		graph.PrintDependentCount();
 		MyComparator comparator=new MyComparator();
-		comparator.entriesSortedByValues(dependents);
+		List sortedDependents;
+		sortedDependents=comparator.entriesSortedByValues(dependents);
+		System.out.println("dependents after sorting"+dependents);
+		System.out.println("sorted dependents"+sortedDependents);
 	}
 
 }
