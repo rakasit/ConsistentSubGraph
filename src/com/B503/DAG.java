@@ -10,7 +10,7 @@ public class DAG
 {
 	Map<Integer, Set<Integer>> parent=new HashMap <Integer, Set<Integer>> ();
 	Map<Integer, Set<Integer>> children=new HashMap <Integer, Set<Integer>> ();
-	Map<Integer,Integer>   dependents =new HashMap<Integer, Integer>(); 
+	static Map<Integer,Integer>   dependents =new HashMap<Integer, Integer>(); 
 
 	void addParent(Integer node, Integer par)
 	{
@@ -44,10 +44,12 @@ public class DAG
 
 	void addDependentCount()
 	{
+		
 		for(Integer i: children.keySet())
 		{
 			dependents.put(i, children.get(i).size());
 		}
+		
 	}
 
 	void PrintDependentCount()
@@ -100,6 +102,9 @@ public class DAG
 		graph.PrintAdjacencyList();
 		graph.addDependentCount();
 		graph.PrintDependentCount();
+		MyComparator comparator=new MyComparator();
+		comparator.entriesSortedByValues(dependents);
 	}
 
 }
+;
