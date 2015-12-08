@@ -77,91 +77,45 @@ public class DAG
 
 	void init(Integer node)
 	{
-		
+
 		if(!parent.containsKey(node))
 			parent.put(node,null);
 		if(!children.containsKey(node))
 			children.put(node,null);
 
 	}
-public void generateUnion(ArrayList<Set> asList) {
-		
-		
+	public void generateUnion(ArrayList<Set> asList) {
 		int asListSize=asList.size() ;
 		int j = asListSize ;
 		int i = 0 ;
 		System.out.println(" Initial Size " + asListSize ) ;
-
-	
-		
-			while( i  != asListSize ) {
-				
+		while( i  != asListSize ) {
 			Set setA = asList.get(i);
-			
-			       int k = i+1;
-			       
-				while( k != asListSize ) {
-
+			int k = i+1;
+			while( k != asListSize ) {
 				Set setB = asList.get(k);
-				 	
-
 				Set<Integer> union = new HashSet<Integer>();
-				
 				union.addAll(setA);
-				
 				union.addAll(setB);
-				
 				if(asList.contains(union)){
 				}
 				else{
-				asList.add(union);
+					asList.add(union);
 				}
-				
-				/*System.out.println("SetA is "+setA);
-			    System.out.println("SetB is "+setB);*/
-			    System.out.println("incremental size of asList is"+asList.size());
-			    System.out.println("Union is "+union);
-			    
-			    k++;
+				System.out.println("incremental size of asList is"+asList.size());
+				System.out.println("Union is "+union);
+				k++;
 			}
-				i++;
-
+			i++;
 		}
-			System.out.println("asList.size() at End   "+asList.size());
-			System.out.println("asListSize at End   "+ asListSize);
-			System.out.println(asList);
-			/*if(asList.size()!=asListSize) {
-				
-				generateUnion(asList);
-				
-			}*/
+		System.out.println("asList.size() at End   "+asList.size());
+		System.out.println("asListSize at End   "+ asListSize);
+		System.out.println(asList);
 	}
-   /* public static <E> ArrayList<E> union(ArrayList<E> array1, ArrayList<E> array2) {
-        // arrayUnion will be the arrayList that will be returned
-        ArrayList<E> arrayUnion = new ArrayList<E>(array1);
-        arrayUnion.addAll(array2);
-        E current;
 
-        for (int i = 0; i < arrayUnion.size(); i++) {
-
-            for (int j = 0; j < arrayUnion.size(); j++) {
-                current = arrayUnion.get(i);
-
-                if (i != j && current.equals(arrayUnion.get(j))) {
-                    arrayUnion.remove(j);
-                    --j;// This is set to check the item which replace the
-                        // removed item at previous statement
-                }
-            }
-        }
-
-        return arrayUnion;
-    }*/
-
-	
 	ArrayList<Set> generateSubGraphs(List<Entry<Integer, Integer>> sortedDependents)
 	{
-		
+
 		Iterator parit=null;
 		for(int ind=0;ind<sortedDependents.size();ind++)
 		{
@@ -195,12 +149,12 @@ public void generateUnion(ArrayList<Set> asList) {
 			subGraphs.add(subset);
 		}
 
-			return subGraphs;
-			
-		}
-		
-	
-	
+		return subGraphs;
+
+	}
+
+
+
 	public static void main(String args[])
 	{
 		DAG graph=new DAG();
@@ -262,17 +216,17 @@ public void generateUnion(ArrayList<Set> asList) {
 		System.out.println("sorted dependents"+sortedDependents);
 		subGraphs=graph.generateSubGraphs(sortedDependents);
 		Set<Set> set = new HashSet<Set>(subGraphs);
-		
+
 		subGraphs.clear();
 		subGraphs.addAll(set);  
-		
-		
-		
-	    graph.generateUnion(subGraphs);
-	    
-		
-		
+
+
+
+		graph.generateUnion(subGraphs);
+
+
+
 	}
 
-	
+
 }
