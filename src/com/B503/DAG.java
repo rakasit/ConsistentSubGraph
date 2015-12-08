@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 
 public class DAG 
 
@@ -86,18 +87,20 @@ public class DAG
 	}
 	public void generateUnion(ArrayList<Set> asList) {
 		int newSize=0;
-		int currentSize=0;
-		int elementsAdded=-1;
+
+		int startIndex=0;
 		int asListSize=asList.size() ;
+		int currentSize=asListSize;
 		int j = asListSize ;
+		int endIndex=asListSize;
 		int i = 0 ;
 		System.out.println(" Initial Size " + asListSize ) ;
 		currentSize=asList.size();
-		while(elementsAdded!=0){
-		while( i  != asListSize ) {
-			
+
+		for(i=startIndex; i<currentSize;i++) {
+			int k = startIndex+1;
 			Set setA = asList.get(i);
-			int k = i+1;
+
 			while( k != asListSize ) {
 				Set setB = asList.get(k);
 				Set<Integer> union = new HashSet<Integer>();
@@ -107,23 +110,28 @@ public class DAG
 				}
 				else{
 					asList.add(union);
+					currentSize++;
 				}
+
 				System.out.println("incremental size of asList is"+asList.size());
 				System.out.println("Union is "+union);
+				System.out.println("Current size of list is "+ asList.size());
 				k++;
 			}
-			i++;
+
 		}
-		
+
 		newSize = asList.size();
-		System.out.println("new size: "+ newSize);
-		
-		System.out.println("elemts added: "+ elementsAdded);
+		System.out.println("new size: "+ asList.size());
+
+
 		System.out.println("asListSize at End   "+ asListSize);
 		System.out.println(asList);
-		}
-		elementsAdded=newSize-currentSize;
+
+
 	}
+
+
 
 	ArrayList<Set> generateSubGraphs(List<Entry<Integer, Integer>> sortedDependents)
 	{
@@ -232,9 +240,8 @@ public class DAG
 		subGraphs.clear();
 		subGraphs.addAll(set);  
 
-
-
 		graph.generateUnion(subGraphs);
+
 
 
 
