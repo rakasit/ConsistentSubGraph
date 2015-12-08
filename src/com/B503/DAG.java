@@ -85,11 +85,17 @@ public class DAG
 
 	}
 	public void generateUnion(ArrayList<Set> asList) {
+		int newSize=0;
+		int currentSize=0;
+		int elementsAdded=-1;
 		int asListSize=asList.size() ;
 		int j = asListSize ;
 		int i = 0 ;
 		System.out.println(" Initial Size " + asListSize ) ;
+		currentSize=asList.size();
+		while(elementsAdded!=0){
 		while( i  != asListSize ) {
+			
 			Set setA = asList.get(i);
 			int k = i+1;
 			while( k != asListSize ) {
@@ -108,9 +114,15 @@ public class DAG
 			}
 			i++;
 		}
-		System.out.println("asList.size() at End   "+asList.size());
+		
+		newSize = asList.size();
+		System.out.println("new size: "+ newSize);
+		
+		System.out.println("elemts added: "+ elementsAdded);
 		System.out.println("asListSize at End   "+ asListSize);
 		System.out.println(asList);
+		}
+		elementsAdded=newSize-currentSize;
 	}
 
 	ArrayList<Set> generateSubGraphs(List<Entry<Integer, Integer>> sortedDependents)
