@@ -1,8 +1,9 @@
 #!/bin/bash
 #PBS -l nodes=2:ppn=32:dc2
 #PBS -l walltime=24:00:00
+#PBS -l gres=ccm
 module load ccm
-cd ConsistentSubGraph/src/com/B503/
+cd /N/home/b/s/bsairamr/BigRed2/ConsistentSubGraph/src/com/B503/
 ccmrun javac *.java
 cd ../..
 ccmrun java com/B503/DAG
