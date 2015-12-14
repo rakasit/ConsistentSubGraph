@@ -145,13 +145,13 @@ public class DAG
 
 		System.out.println(subGraphs);
 		System.out.println(subGraphs.size());
-		//System.out.println(subGraphs.get(49));
-		try {
+		System.out.println(subGraphs.get(49));
+		/*try {
 			pr1=new PrintWriter(new FileWriter(new File("/home/helloworld/graph.txt")));
 		} catch (IOException e) {
 
 			e.printStackTrace();
-		}
+		}*/
 		//generateCombinations1(subGraphs.size()-1,0,pr1);
 		generateUnion(subGraphs,pr1,0,subGraphs.size()-1,subGraphs.size());
 
@@ -169,7 +169,7 @@ public class DAG
 		{
 
 			Scanner in = new Scanner(new File("/home/helloworld/Downloads/dag25-1.txt"));
-			pr = new PrintWriter(new FileWriter(new File("/home/helloworld/foo2bpo.csv")));
+			//pr = new PrintWriter(new FileWriter(new File("/home/helloworld/foo2bpo.csv")));
 			in.nextLine();
 			while (in.hasNextLine()) {
 				final String line = in.nextLine();
@@ -241,8 +241,8 @@ public class DAG
 			System.out.println(" Initial Size " + currentSize ) ;*/
 
 
-			pr.println("asList in the function         "+ asList);
-			pr.flush();
+		//	pr.println("asList in the function         "+ asList);
+		//	pr.flush();
 			//System.out.println(asList);
 
 
@@ -262,9 +262,9 @@ public class DAG
 					else{
 						asList.add(union);
 						count+=1;
-						pr.println("union    "+union);
+						System.out.println("union    "+union);
 
-						pr.flush();
+					//	pr.flush();
 					}
 
 
@@ -408,7 +408,7 @@ public class DAG
 		//PrintWriter pr1 ;
 		try {
 			//scanner = new Scanner(new File("/home/helloworld/tree_100.txt"));
-			scanner = new Scanner(new File("/home/helloworld/Downloads/dag25-1.txt"));
+			scanner = new Scanner(new File("/DAG.txt"));
 			//pr = new PrintWriter(new FileWriter(new File("F:/Algorithms/foo2bpo.csv")));
 		}
 		catch(Exception e)
@@ -464,12 +464,12 @@ public class DAG
 		sortedDependents=comparator.entriesSortedByValues(g.dependents);
 		g.generateSubGraphs(sortedDependents);
 
-		try {
-			pr1=new PrintWriter(new FileWriter(new File("F:/Algorithms/graphmatrix.txt")));
-		} catch (IOException e) {
+	//	try {
+	//		pr1=new PrintWriter(new FileWriter(new File("F:/Algorithms/graphmatrix.txt")));
+	//	} catch (IOException e) {
 
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+	//	}
 
 		//g.generateCombinations1(g.subGraphs.size()-1,0,g.pr1);
 		generateUnion(g.subGraphs,pr1,0,g.subGraphs.size()-1,g.subGraphs.size());
