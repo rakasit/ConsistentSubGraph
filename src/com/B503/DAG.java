@@ -585,6 +585,7 @@ public class DAG
 		graph.generateSubGraphs(sortedDependents);*/
 		//readMiniFile();
 		readMatrix();
+		
 
 
 
