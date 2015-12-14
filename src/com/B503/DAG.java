@@ -1,6 +1,7 @@
 package com.B503;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -400,6 +401,83 @@ public class DAG
 	}
 
 
+	public static void readMatrix()
+	{
+		DAG g = new DAG();
+		int nodes=4567, cntNode=0,cntAdj=0;
+		Scanner scanner=null;
+		//PrintWriter pr1 ;
+		try {
+			//scanner = new Scanner(new File("/home/helloworld/tree_100.txt"));
+			scanner = new Scanner(new File("F:/Algorithms/dag25-2.txt"));
+			//pr = new PrintWriter(new FileWriter(new File("F:/Algorithms/foo2bpo.csv")));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		try
+		{
+
+			while(scanner.hasNextLine())
+			{
+				cntNode++;
+				System.out.println("cntNode"+cntNode);
+				g.init(Integer.valueOf(cntNode));
+
+
+
+
+				//children.put(Integer.valueOf(cntNode),new HashSet<Integer>());
+				String line;
+				//Set<Integer>tempNode=new HashSet<Integer>();
+				String lineSplit[]=new String[100];
+				line=scanner.nextLine();
+				System.out.println("line"+line);
+				lineSplit=line.split(" ");
+				for (int i = 0; i < lineSplit.length; i++) {
+					System.out.print(lineSplit[i]);
+					if(Integer.parseInt(lineSplit[i])==1){
+						//tempNode.add(Integer.valueOf(i+1));
+						g.init(Integer.valueOf(i+1));
+						g.addParent(Integer.valueOf(i+1),Integer.valueOf(cntNode));
+						g.addChildren(Integer.valueOf(cntNode),Integer.valueOf(i+1));
+
+
+					}
+				}
+				//children.put(cntNode, tempNode);
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		//System.out.println("children"+children);
+		//System.out.println((long)subGraphs(Integer.valueOf(1)));
+
+		g.addDependentCount();
+		g.PrintDependentCount();
+		MyComparator comparator=new MyComparator();
+		List sortedDependents;
+		sortedDependents=comparator.entriesSortedByValues(g.dependents);
+		g.generateSubGraphs(sortedDependents);
+
+		try {
+			pr1=new PrintWriter(new FileWriter(new File("F:/Algorithms/graphmatrix.txt")));
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		//g.generateCombinations1(g.subGraphs.size()-1,0,g.pr1);
+		generateUnion(g.subGraphs,pr1,0,g.subGraphs.size()-1,g.subGraphs.size());
+
+	}
+
+	
 
 	public static void main(String args[])
 	{
@@ -506,7 +584,8 @@ public class DAG
 		System.out.println("dependents after sorting"+dependents);
 		System.out.println("sorted dependents"+sortedDependents);
 		graph.generateSubGraphs(sortedDependents);*/
-		readMiniFile();
+		//readMiniFile();
+		readMatrix();
 
 
 
