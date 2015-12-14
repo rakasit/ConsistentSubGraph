@@ -147,7 +147,7 @@ public class DAG
 		System.out.println(subGraphs.size());
 		//System.out.println(subGraphs.get(49));
 		try {
-			pr1=new PrintWriter(new FileWriter(new File("F:/Algorithms/graph.txt")));
+			pr1=new PrintWriter(new FileWriter(new File("/graph.txt")));
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -168,8 +168,8 @@ public class DAG
 		try
 		{
 
-			Scanner in = new Scanner(new File("F:/Algorithms/mini-mfo.txt"));
-			pr = new PrintWriter(new FileWriter(new File("F:/Algorithms/foo2bpo.csv")));
+			Scanner in = new Scanner(new File("/input.txt"));
+			pr = new PrintWriter(new FileWriter(new File("/foo2bpo.csv")));
 			in.nextLine();
 			while (in.hasNextLine()) {
 				final String line = in.nextLine();
@@ -206,7 +206,7 @@ public class DAG
 		g.generateSubGraphs(sortedDependents);
 
 		try {
-			pr1=new PrintWriter(new FileWriter(new File("F:/Algorithms/graph.txt")));
+			pr1=new PrintWriter(new FileWriter(new File("/graph.txt")));
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -405,11 +405,10 @@ public class DAG
 	{
 		DAG g = new DAG();
 		int nodes=4567, cntNode=0,cntAdj=0;
-		Scanner scanner=null;
 		//PrintWriter pr1 ;
 		try {
 			//scanner = new Scanner(new File("/home/helloworld/tree_100.txt"));
-			scanner = new Scanner(new File("F:/Algorithms/dag25-2.txt"));
+			scanner = new Scanner(new File("/input.txt"));
 			//pr = new PrintWriter(new FileWriter(new File("F:/Algorithms/foo2bpo.csv")));
 		}
 		catch(Exception e)
@@ -466,7 +465,7 @@ public class DAG
 		g.generateSubGraphs(sortedDependents);
 
 		try {
-			pr1=new PrintWriter(new FileWriter(new File("F:/Algorithms/graphmatrix.txt")));
+			pr1=new PrintWriter(new FileWriter(new File("/graphmatrix.txt")));
 		} catch (IOException e) {
 
 			e.printStackTrace();
